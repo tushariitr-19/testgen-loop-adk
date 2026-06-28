@@ -1,0 +1,7 @@
+mode: set
+github.com/tushariitr-19/testgen-loop-adk/examples/classify/classify.go:8.29,9.9 1 1
+github.com/tushariitr-19/testgen-loop-adk/examples/classify/classify.go:10.13,11.20 1 1
+github.com/tushariitr-19/testgen-loop-adk/examples/classify/classify.go:12.14,13.16 1 0
+github.com/tushariitr-19/testgen-loop-adk/examples/classify/classify.go:14.14,15.17 1 0
+github.com/tushariitr-19/testgen-loop-adk/examples/classify/classify.go:16.15,17.18 1 0
+github.com/tushariitr-19/testgen-loop-adk/examples/classify/classify.go:18.10,19.17 1 0
