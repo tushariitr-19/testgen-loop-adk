@@ -1,0 +1,100 @@
+<svg width="100%" viewBox="0 0 1400 600" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>testgen-loop-adk architecture overview</title>
+<defs>
+<marker id="arr2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+</defs>
+
+<!-- Title -->
+<text x="700" y="42" text-anchor="middle" style="fill:rgb(68,68,65);font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:24px;font-weight:600">testgen-loop-adk</text>
+<text x="700" y="68" text-anchor="middle" style="fill:rgb(120,118,110);font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:15px;font-weight:400">measure · propose · verify · iterate</text>
+
+<!-- ── LoopAgent container ── -->
+<rect x="80" y="100" width="1240" height="290" rx="16" style="fill:rgb(60,52,137);stroke:rgb(175,169,236);stroke-width:0.8"/>
+<text x="700" y="132" text-anchor="middle" style="fill:rgb(220,217,250);font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:18px;font-weight:600">Loop Agent</text>
+<text x="700" y="154" text-anchor="middle" style="fill:rgb(175,169,236);font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:13px;font-weight:400">iterates the three steps below until a stop condition fires</text>
+
+<!-- Loop-back arrow -->
+<path d="M 1090 200 C 1090 180, 310 180, 310 200" fill="none" stroke="rgb(175,169,236)" stroke-width="1.5" marker-end="url(#arr2)"/>
+<text x="700" y="177" text-anchor="middle" style="fill:rgb(175,169,236);font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:13px;font-style:italic">iterate</text>
+
+<!-- Evaluator -->
+<rect x="170" y="205" width="270" height="160" rx="12" style="fill:rgb(40,90,100);stroke:rgb(140,200,210);stroke-width:0.8"/>
+<text x="305" y="248" text-anchor="middle" style="fill:rgb(210,235,240);font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:20px;font-weight:600">Evaluator</text>
+<line x1="220" y1="266" x2="390" y2="266" style="stroke:rgb(140,200,210);stroke-width:0.4"/>
+<text x="305" y="304" text-anchor="middle" style="fill:rgb(220,240,245);font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px">measures the current</text>
+<text x="305" y="326" text-anchor="middle" style="fill:rgb(220,240,245);font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px">coverage and lists the</text>
+<text x="305" y="348" text-anchor="middle" style="fill:rgb(220,240,245);font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px">branches still uncovered</text>
+
+<!-- Eval → Mutator -->
+<line x1="440" y1="285" x2="565" y2="285" stroke="rgb(220,217,250)" stroke-width="2" marker-end="url(#arr2)"/>
+
+<!-- Mutator -->
+<rect x="565" y="205" width="270" height="160" rx="12" style="fill:rgb(140,70,40);stroke:rgb(240,180,140);stroke-width:0.8"/>
+<text x="700" y="248" text-anchor="middle" style="fill:rgb(250,225,205);font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:20px;font-weight:600">Mutator</text>
+<line x1="615" y1="266" x2="785" y2="266" style="stroke:rgb(240,180,140);stroke-width:0.4"/>
+<text x="700" y="304" text-anchor="middle" style="fill:rgb(252,230,210);font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px">asks Gemini to write one</text>
+<text x="700" y="326" text-anchor="middle" style="fill:rgb(252,230,210);font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px">Go test that targets a</text>
+<text x="700" y="348" text-anchor="middle" style="fill:rgb(252,230,210);font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px">specific uncovered branch</text>
+
+<!-- Mutator → Selector -->
+<line x1="835" y1="285" x2="960" y2="285" stroke="rgb(220,217,250)" stroke-width="2" marker-end="url(#arr2)"/>
+
+<!-- Selector -->
+<rect x="960" y="205" width="270" height="160" rx="12" style="fill:rgb(40,90,100);stroke:rgb(140,200,210);stroke-width:0.8"/>
+<text x="1095" y="248" text-anchor="middle" style="fill:rgb(210,235,240);font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:20px;font-weight:600">Selector</text>
+<line x1="1010" y1="266" x2="1180" y2="266" style="stroke:rgb(140,200,210);stroke-width:0.4"/>
+<text x="1095" y="304" text-anchor="middle" style="fill:rgb(220,240,245);font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px">appends the test, re-runs</text>
+<text x="1095" y="326" text-anchor="middle" style="fill:rgb(220,240,245);font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px">coverage, and keeps it only</text>
+<text x="1095" y="348" text-anchor="middle" style="fill:rgb(220,240,245);font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px">if coverage went up</text>
+
+<!-- Escalate exit -->
+<line x1="1230" y1="285" x2="1370" y2="285" stroke="rgb(240,180,140)" stroke-width="2.5" marker-end="url(#arr2)"/>
+<text x="1300" y="274" text-anchor="middle" style="fill:rgb(240,180,140);font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:13px;font-weight:500">target hit</text>
+<text x="1300" y="307" text-anchor="middle" style="fill:rgb(240,180,140);font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:11px">→ stop</text>
+
+<!-- ── External services row (cream) ── -->
+
+<!-- Go test -->
+<rect x="170" y="420" width="270" height="70" rx="10" style="fill:rgb(248,242,228);stroke:rgb(200,190,170);stroke-width:0.8"/>
+<text x="305" y="450" text-anchor="middle" style="fill:rgb(60,55,45);font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:600">go test</text>
+<text x="305" y="473" text-anchor="middle" style="fill:rgb(110,100,85);font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px">measures coverage (Evaluator + Selector)</text>
+
+<!-- Eval → go test (vertical) -->
+<line x1="305" y1="365" x2="305" y2="420" stroke="rgb(180,178,169)" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr2)"/>
+<!-- Sel → go test (curved) -->
+<path d="M 1050 365 C 1050 395, 380 395, 380 420" fill="none" stroke="rgb(180,178,169)" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr2)"/>
+
+<!-- Gemini -->
+<rect x="565" y="420" width="270" height="70" rx="10" style="fill:rgb(248,242,228);stroke:rgb(200,190,170);stroke-width:0.8"/>
+<text x="700" y="450" text-anchor="middle" style="fill:rgb(60,55,45);font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:600">Gemini</text>
+<text x="700" y="473" text-anchor="middle" style="fill:rgb(110,100,85);font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px">generates the test code (Mutator)</text>
+
+<!-- Mutator → Gemini -->
+<line x1="700" y1="365" x2="700" y2="420" stroke="rgb(180,178,169)" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr2)"/>
+
+<!-- Test file -->
+<rect x="960" y="420" width="270" height="70" rx="10" style="fill:rgb(248,242,228);stroke:rgb(200,190,170);stroke-width:0.8"/>
+<text x="1095" y="450" text-anchor="middle" style="fill:rgb(60,55,45);font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:600">test file</text>
+<text x="1095" y="473" text-anchor="middle" style="fill:rgb(110,100,85);font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px">accepted tests land here (Selector)</text>
+
+<!-- Sel → Test file -->
+<line x1="1095" y1="365" x2="1095" y2="420" stroke="rgb(180,178,169)" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr2)"/>
+
+<!-- ── Stop conditions panel (now outside the LoopAgent, combined with footer caption) ── -->
+
+<text x="700" y="528" text-anchor="middle" style="fill:rgb(68,68,65);font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:13px;font-weight:600">Stop conditions — configurable via CLI flag or environment variable</text>
+
+<!-- chip 1: target_coverage -->
+<rect x="170" y="545" width="290" height="32" rx="16" style="fill:rgb(255,255,255);stroke:rgb(175,169,236);stroke-width:0.8"/>
+<text x="315" y="566" text-anchor="middle" style="fill:rgb(60,52,137);font-family:&quot;JetBrains Mono&quot;, &quot;Menlo&quot;, monospace;font-size:12px;font-weight:500">target_coverage  ≥  0.90  (default)</text>
+
+<!-- chip 2: max_iterations -->
+<rect x="490" y="545" width="270" height="32" rx="16" style="fill:rgb(255,255,255);stroke:rgb(175,169,236);stroke-width:0.8"/>
+<text x="625" y="566" text-anchor="middle" style="fill:rgb(60,52,137);font-family:&quot;JetBrains Mono&quot;, &quot;Menlo&quot;, monospace;font-size:12px;font-weight:500">max_iterations  =  8  (default)</text>
+
+<!-- chip 3: patience -->
+<rect x="790" y="545" width="440" height="32" rx="16" style="fill:rgb(255,255,255);stroke:rgb(175,169,236);stroke-width:0.8"/>
+<text x="1010" y="566" text-anchor="middle" style="fill:rgb(60,52,137);font-family:&quot;JetBrains Mono&quot;, &quot;Menlo&quot;, monospace;font-size:12px;font-weight:500">patience  =  2  consecutive iterations without coverage gain</text>
+</svg>
