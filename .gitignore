@@ -1,0 +1,39 @@
+# Binaries
+/testgen-loop
+/bin/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test & coverage output
+*.test
+*.out
+coverage.txt
+coverage.html
+*.cover
+*.coverprofile
+
+# Dependency / build artifacts
+vendor/
+
+# Environment & secrets
+.env
+.env.*
+!.env.example
+
+# Editor / IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local scratch
+/tmp/
+/.scratch/
